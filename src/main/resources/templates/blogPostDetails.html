@@ -1,11 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Blog post details</title>
+    <title>Blog Post details</title>
 </head>
 <body>
-
-
+<div>
+    <b>Title:</b>
+    <span th:text="${blogPost.title}"></span>
+</div>
+<div>
+    <b>Category:</b>
+    <span th:text="${blogPost.category}"></span>
+</div>
+<div>
+    <b>Description:</b>
+    <span th:text="${blogPost.description}"></span>
+</div>
+<div>
+    <a th:href="@{/blogPosts/{id}/update(id=${blogPost.id})}">Update Blog post</a>
+</div>
+<div th:if="${blogPost eq null}">Blog Post does not exist</div>
 </body>
 </html>

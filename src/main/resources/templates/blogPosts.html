@@ -17,6 +17,9 @@
         </thead>
         <tbody>
         <tr th:each="blogPost: ${blogPosts}">
+            <td>
+                <a th:href="@{/blogPosts/{id}(id=${blogPost.id})}" th:text="${blogPost.title}"></a>
+            </td>
             <td th:text="${blogPost.title}"></td>
             <td th:text="${blogPost.description}"></td>
             <td th:text="${blogPost.category}"></td>

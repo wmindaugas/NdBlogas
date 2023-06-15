@@ -29,4 +29,12 @@ public class BlogPostRepository {
     public BlogPost getBlogPost(UUID id) {
         return blogPosts.get(id);
     }
+
+    public void update(BlogPost blogPost) {
+        blogPosts.put(blogPost.getId(), blogPost);
+    }
+
+    public void delete(UUID id) {
+        blogPosts.remove(id);
+    }
 }

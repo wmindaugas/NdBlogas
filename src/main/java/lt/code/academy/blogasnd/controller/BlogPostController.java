@@ -4,10 +4,7 @@ import lt.code.academy.blogasnd.dto.BlogPost;
 import lt.code.academy.blogasnd.service.BlogPostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
@@ -44,11 +41,34 @@ public class BlogPostController {
         blogPostService.createBlogPost(blogPost);
         return "form/blogPost";
     }
-    @GetMapping("/details")
-    public String getBlogPostDetails(@RequestParam UUID id, Model model) {
-        model.addAttribute("blogPost", blogPostService.ge);
+    @GetMapping("/{id}")
+    public String getBlogPostDetails(@PathVariable UUID id, Model model) {
+        model.addAttribute("blogPost", blogPostService.getBlogPost(id));
 
 return "blogPostDetails";
+    }
+
+    @GetMapping("/{id}/update")
+    public String openUpdateBlogPostForm(@PathVariable UUID id, Model model) {
+        model.addAttribute("blogPost", blogPostService.getBlogPost(id));
+
+        return "form/blogPost";
+    }
+
+    @PostMapping("/{id}/update")
+    public String updateProduct(BlogPost blogPost, Model model) {
+        blogPostService.updateBlogPost(blogPost);
+        model.addAttribute("blogPost", blogPostService.getBlogPosts());
+
+        return "blogPosts";
+    }
+
+    @GetMapping("/{id}/delete")
+    public String deleteBlogPost(@PathVariable UUID id, Model model) {
+        blogPostService.deleteProduct(id);
+        model.addAttribute("blogPost", blogPostService.getBlogPosts());
+
+        return "blogPosts";
     }
 
 }

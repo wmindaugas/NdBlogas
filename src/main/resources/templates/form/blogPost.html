@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="isBlogPostExist=${blogPost.id ne null}">
 <head>
-    <meta charset="UTF-8">
-    <title>Create blog blogPost</title>
+<meta charset="UTF-8">
+    <title th:text="${isBlogPostExist ? 'Upadte blogPost' : 'Create blogPost'}"></title>
 </head>
+
 <body>
-<h3>Create Blog Post:</h3>
+<h3 th:text="${isBlogPostExist ? 'Update blogPost:' : 'Create blogPost:'}"></h3>
 <form method="post" th:object="${blogPost}">
     <div>
         <label>Title</label>
@@ -19,7 +20,7 @@
         <label>Category</label>
         <input type="text" placeholder="Category" th:field="*{category}">
     </div>
-    <button type="submit">Create Blog Post</button>
+    <button type="submit" th:text="${isBlogPostExist ? 'Update' : 'Create'}"></button>
 </form>
 <div th:if="${message}" th:text="${message}"></div>
 </body>

@@ -27,6 +27,15 @@ public class BlogPostService {
     }
     public BlogPost getBlogPost(UUID id) {
         return blogPostRepository.getBlogPost(id);
-    };
+    }
+
+    public void updateBlogPost(BlogPost blogPost) {
+        blogPostRepository.update(blogPost);
+    }
+
+    public void deleteProduct(UUID id) {
+        blogPostRepository.delete(id);
+    }
+
 }
 
