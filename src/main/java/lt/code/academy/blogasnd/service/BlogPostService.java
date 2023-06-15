@@ -25,7 +25,7 @@ public class BlogPostService {
     public List<BlogPost> getBlogPosts(){
         return blogPostRepository.getBlogPosts();
     }
-    public BlogPost getBlogPost(UUID, id) {
+    public BlogPost getBlogPost(UUID id) {
         return blogPostRepository.getBlogPost(id);
     };
 }
